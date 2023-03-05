@@ -1,0 +1,6 @@
+:root{
+    --primary:#191970
+}
+bg-primary{
+    background-color: var(--primary);
+}
