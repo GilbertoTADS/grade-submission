@@ -9,6 +9,12 @@
         <p th:unless="${sales} > 50">Sales are bad!</p>
         <h3>Ternary operator</h3>
         <p th:text="${sales > 50} ? 'Sales are good!' : 'Sales are bad'"></p>
-        
+        <h3>Swith</h3>
+        <div th:switch="${product}">
+            <p th:case="'chair'">50</p>
+            <p th:case="'tv'">150</p>
+            <p th:case="*">no match</p>
+
+        </div>
     </body>
 </html>
