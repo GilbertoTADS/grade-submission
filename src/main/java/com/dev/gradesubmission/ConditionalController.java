@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ConditionalController {
 
-    @GetMapping(value="/")
+    @GetMapping(value="/conditional")
     public String getMethodName(Model model){
         model.addAttribute("sales",3);
         model.addAttribute("product", "table");

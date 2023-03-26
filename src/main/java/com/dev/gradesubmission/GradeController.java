@@ -15,8 +15,15 @@ public class GradeController {
                             new Grade("Harry", "CSS", "C-"),
                             new Grade("Hermione", "Arithmetric", "A+"),
                             new Grade("Neville", "Charms", "A-"));
-
-    @GetMapping("/grades")
+    
+    @GetMapping(value="/")
+    public String gradeForm(Model model){
+        Grade grade = new Grade("Guilbert","Spring MVC","100");
+        model.addAttribute("grade", grade);
+        return "form";
+    }
+                            
+    @GetMapping(value="/grades")
     public String getGrades(Model model){
         model.addAttribute("grades", grades);
         return "grades";

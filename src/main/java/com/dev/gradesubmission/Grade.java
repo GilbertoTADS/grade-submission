@@ -20,8 +20,8 @@ public class Grade {
     public String getName() {
         return name;
     }
-    public void setName(String student) {
-        this.name = student;
+    public void setName(String name) {
+        this.name = name;
     }
     public String getSubject() {
         return subject;
