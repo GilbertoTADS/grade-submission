@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class GradeController {
 
-    private List<Grade> grades = new ArrayList<>();
+    private GradesUtil grades = new GradesUtil();
     
     @GetMapping(value="/")
     public String gradeForm(Model model, @RequestParam(required = false) String name){
-        Integer indexGrade = getGradeIndex(name);
-        boolean gradeNotExist = indexGrade == -1000;
+        Integer indexGrade = grades.getIndex(name);
         
         Grade gradeEmpty = new Grade("","","");
-        Grade grade = gradeNotExist ? gradeEmpty : grades.get(indexGrade);
+        Grade grade = grades.notExist(name) ? gradeEmpty : grades.get(indexGrade);
         
         model.addAttribute("grade", grade);
         return "form";
@@ -33,21 +32,13 @@ public class GradeController {
     }
     @PostMapping("/handleSubmit")
     public String submitGrade(Grade grade){
-        Integer indexGrade = getGradeIndex(grade.getName());
-        boolean gradeNotExist = indexGrade == -1000;
+        Integer indexGrade = grades.getIndex(grade.getName());
         
-        if(gradeNotExist){
+        if(grades.exists(grade.getName())){
             grades.add(grade);
          }else{
             grades.set(indexGrade, grade);
          }
         return "redirect:/grades";
     }
-    public Integer getGradeIndex(String name){
-        for(int i = 0; i < grades.size();i++){
-            if(grades.get(i).getName().equals(name)) return i;
-        }
-        return -1000;
-    }
-    
 }
