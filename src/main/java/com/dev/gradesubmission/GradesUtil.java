@@ -24,6 +24,6 @@ public class GradesUtil extends ArrayList<Grade>{
     }
     public boolean notExist(String id){
         System.out.println("my index: "+getIndex(id));
-        return getIndex(id) == -1000;
+        return getIndex(id) == Constants.NOT_FOUND;
     }
 }
