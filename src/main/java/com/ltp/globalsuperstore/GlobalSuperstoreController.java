@@ -5,12 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class GlobalSuperstoreForm { 
+public class GlobalSuperstoreController { 
     
     @GetMapping("/")
     public String getForm(Model model){
-
-        model.addAttribute("categories", Constants.CATEGORIES);        
+        ProductEntity product = new ProductEntity();
+        model.addAttribute("categories", Constants.CATEGORIES);
+        model.addAttribute("product", product);
         return "form";
     }
 }
