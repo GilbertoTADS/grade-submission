@@ -25,7 +25,7 @@
                  <td type="currency" th:text="*{product.discount}"></td>
                  <td type="date" th:text="*{product.orderDate}"></td>
                  <td>
-                    <a role="button" style="color:white; background-color: #263238" class="table-button">Update</a>
+                    <a role="button" style="color:white; background-color: #263238" class="table-button" th:href="@{/edite (id=${product.id})}">Update</a>
                  </td>
               </tr>
            </table>

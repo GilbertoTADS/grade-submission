@@ -12,8 +12,9 @@
             <form method="post" th:action="@{/}" th:object="${product}">
                 <input type="hidden" th:field="*{id}">
                 <select class="select" th:name="category">
-                    <option style="color:blue" disabled="true" selected="true">Choose Category</option>
-                    <option th:each="item : ${categories}" th:value="${item}" th:text="${item}"></option>
+                    <option style="color:blue" th:if="${product.category == null}" selected="true">Choose Category</option>
+                    <option th:each="item : ${categories}" th:value="${item}" th:text="${item}" th:if="${product.category == null}"></option>
+                    <option th:each="item : ${categories}" th:value="${item}" th:text="${item}" th:if="${item == product.category}" selected="true"></option>
                 </select>
                 <input type="text" placeholder="Name" th:field="*{name}">
                 <input class="half" type="text" placeholder="Price" th:field="*{price}">
