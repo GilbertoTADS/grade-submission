@@ -7,7 +7,7 @@
             <a  th:href="@{/}" >Form</a>
             <a class="active" th:href="@{/inventory}">Inventory</a>
         </div>
-   
+        <div th:if="${success == true}" th:text="${message}" th:class="${ success ? 'alert success':'alert'}"></div>
         <div class="container">
            <table>
               <tr class="head">

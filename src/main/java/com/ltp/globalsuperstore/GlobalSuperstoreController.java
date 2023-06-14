@@ -23,6 +23,7 @@ public class GlobalSuperstoreController {
         ProductEntity product = InventoryEntity.getById(id);
         model.addAttribute("categories", Constants.CATEGORIES);
         model.addAttribute("product", product);
+        model.addAttribute("action", "update");
         return "form";
      }
 }
