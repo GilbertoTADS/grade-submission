@@ -1,13 +1,17 @@
 package com.ltp.globalsuperstore;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.UUID;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ProductEntity{
     private UUID id;
     private String category;
     private String name;
-    private String orderDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date orderDate;
     private BigDecimal price;
     private BigDecimal discount;
 
@@ -36,11 +40,11 @@ public class ProductEntity{
         this.name = name;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
     public BigDecimal getPrice() {
