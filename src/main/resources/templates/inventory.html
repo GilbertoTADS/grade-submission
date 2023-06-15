@@ -21,9 +21,9 @@
               <tr th:each="product: ${products}">
                  <td th:text="*{product.category}"></th>
                  <td th:text="*{product.name}"></td>
-                 <td type="currency" th:text="*{product.price}"></td>
-                 <td type="currency" th:text="*{product.discount}"></td>
-                 <td type="date" th:text="*{product.orderDate}"></td>
+                 <td th:text="${#numbers.formatCurrency(product.price)}"></td>
+                 <td th:text="${#numbers.formatCurrency(product.discount)}"></td>
+                 <td type="date" th:text="${#dates.format(product.orderDate,'yyyy-MM-dd')}"></td>
                  <td>
                     <a role="button" style="color:white; background-color: #263238" class="table-button" th:href="@{/edite (id=${product.id})}">Update</a>
                  </td>
