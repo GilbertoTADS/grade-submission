@@ -19,7 +19,7 @@ public class GlobalSuperstoreController {
         return "form";
     }
      @GetMapping("/edite")
-     public String updateForm(Model model, @RequestParam() String id){
+     public String updateForm(Model model, @RequestParam(required = true) String id){
         ProductEntity product = InventoryEntity.getById(id);
         model.addAttribute("categories", Constants.CATEGORIES);
         model.addAttribute("product", product);
