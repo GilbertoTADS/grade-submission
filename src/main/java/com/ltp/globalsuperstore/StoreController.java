@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class GlobalSuperstoreController { 
+public class StoreController { 
     
     @GetMapping("/")
     public String getForm(Model model){
