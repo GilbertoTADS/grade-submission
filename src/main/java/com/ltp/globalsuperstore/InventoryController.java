@@ -8,6 +8,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class InventoryController{
+    private static final String addItemSuccessly = "You successfully submit the item!";
+    private static final String error = "Some error occurs!";
 
     @GetMapping("/inventory")
     public String getForm(Model model){
@@ -17,15 +19,15 @@ public class InventoryController{
     @PostMapping("/")
     public String submit(Model model,RedirectAttributes redirAttr, ProductEntity product){
         boolean success = InventoryEntity.add(product);
-        redirAttr.addFlashAttribute("success", success);
-        redirAttr.addFlashAttribute("message", success ? "You successfully submit the item!" : "Some error occurs!");
+        redirAttr.addFlashAttribute(Constants.SUCCESS_STATUS, success);
+        redirAttr.addFlashAttribute(Constants.MESSAGE, success ? addItemSuccessly : error);
         return "redirect:/inventory";
     }
     @PostMapping("/update")
     public String update(Model model,RedirectAttributes redirAttr,ProductEntity product){
         InventoryEntity.update(product);
         model.addAttribute("products", InventoryEntity.getProducts());
-        redirAttr.addFlashAttribute("success", "You successfully update the item!");
+        redirAttr.addFlashAttribute(Constants.SUCCESS_STATUS, addItemSuccessly);
         return "inventory";
     }
 
