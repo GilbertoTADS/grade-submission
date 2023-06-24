@@ -1,7 +1,10 @@
 package com.dev.gradesubmission;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +34,8 @@ public class GradeController {
         return "grades";
     }
     @PostMapping("/handleSubmit")
-    public String submitGrade(Grade grade){
+    public String submitGrade(@Valid Grade grade, BindingResult result ){
+        if(result.hasErrors()) return "form";
         Integer indexGrade = grades.getIndex(grade.getId());
         
         if(grades.notExist(grade.getId())){
