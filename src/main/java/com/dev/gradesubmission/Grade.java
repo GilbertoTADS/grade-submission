@@ -2,10 +2,16 @@ package com.dev.gradesubmission;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 public class Grade {
     private String id;
+    @NotBlank(message = "Subject cannot be blank")
     private String subject;
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+    @NotEmpty(message = "Score cannot be empty")
     private String score;
 
     Grade(){
