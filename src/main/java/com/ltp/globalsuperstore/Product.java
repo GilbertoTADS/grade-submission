@@ -4,18 +4,25 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class ProductEntity{
+public class Product{
     private UUID id;
+    @Category(message = "Please select a category")
     private String category;
+    @NotBlank(message = "Name cannot be blank")
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date orderDate;
+    @Min(value = 0,message = "Price cannot be negative")
     private BigDecimal price;
+    @Min(value = 0,message = "Discount cannot be negative")
     private BigDecimal discount;
 
-    ProductEntity(){
+    Product(){
         this.id = UUID.randomUUID();
     }
     public UUID getId() {
@@ -86,13 +93,11 @@ public class ProductEntity{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ProductEntity other = (ProductEntity) obj;
+        Product other = (Product) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
         }
-        System.out.println("my ID "+id+" other "+other.getId());
-        System.out.println("IGUAIS: "+id.toString().equals(other.getId().toString()));
         if(id.toString().equals(other.getId().toString()))
             return true;
         return false;

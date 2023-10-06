@@ -11,15 +11,30 @@
             <h2> Global Superstore </h2>
             <form method="post" th:action="${action} == 'update' ? @{/update} : @{/}" th:object="${product}">
                 <input type="hidden" th:field="*{id}">
+                <div>
+                    <p style="color:red;" th:errors="*{category}"></p> 
+                </div>
                 <select class="select" th:name="category">
                     <option style="color:blue" th:if="${product.category == null}" selected="true">Choose Category</option>
                     <option th:if="${product.category != null}" th:value="${product.category}" th:text="${product.category}" selected="true"></option>
                     <option th:each="item : ${categories}" th:value="${item}" th:text="${item}" th:if="${item != product.category}" ></option>
                 </select>
+                <div>
+                    <p style="color:red;" th:errors="*{name}"></p>
+                </div>
                 <input type="text" placeholder="Name" th:field="*{name}">
+                <div>
+                    <p style="color:red;" th:errors="*{price}"></p>
+                </div>
                 <input class="half" type="text" placeholder="Price" th:field="*{price}">
+                <div>
+                    <p style="color:red;" th:errors="*{discount}"></p>
+                </div>
                 <input class="half" type="text" placeholder="Discount" th:field="*{discount}">
                 <h4>Order Date</h4>
+                <div>
+                    <p style="color:red;" th:errors="*{orderDate}"></p>
+                </div>
                 <input type="date" style="color:black" th:field="*{orderDate}">
                 <input type="submit" value="Submit Item">
             </form>

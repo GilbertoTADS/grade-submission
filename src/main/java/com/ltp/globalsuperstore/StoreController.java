@@ -13,14 +13,14 @@ public class StoreController {
     
     @GetMapping("/")
     public String getForm(Model model){
-        ProductEntity product = new ProductEntity();
+        Product product = new Product();
         model.addAttribute("categories", Constants.CATEGORIES);
         model.addAttribute("product", product);
         return "form";
     }
      @GetMapping("/edite")
      public String updateForm(Model model, @RequestParam(required = true) String id){
-        ProductEntity product = InventoryEntity.getById(id);
+        Product product = InventoryEntity.getById(id);
         model.addAttribute("categories", Constants.CATEGORIES);
         model.addAttribute("product", product);
         model.addAttribute("action", "update");
