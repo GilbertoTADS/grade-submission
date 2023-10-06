@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class GradesUtil extends ArrayList<Grade>{
     Grade auxGrade = new Grade();
 
-    GradesUtil(){}
+    public GradesUtil(){}
 
     GradesUtil(List<Grade> grades){
         super(grades);

@@ -1,4 +1,4 @@
-package com.dev.gradesubmission;
+package com.dev.gradesubmission.controller;
 
 import javax.validation.Valid;
 
@@ -8,6 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.dev.gradesubmission.Grade;
+import com.dev.gradesubmission.GradesUtil;
 
 @Controller
 public class GradeController {

@@ -13,7 +13,7 @@ public class Grade {
     @Score(message = "Score must be a letter grade")
     private String score;
 
-    Grade(){
+    public Grade(){
         this.id = UUID.randomUUID().toString();
     }
     public void setId(String id){
