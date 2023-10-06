@@ -1,14 +1,18 @@
-package com.dev.gradesubmission;
+package com.dev.gradesubmission.repository;
 
 import java.util.List;
+
+import com.dev.gradesubmission.Constants;
+import com.dev.gradesubmission.Grade;
+
 import java.util.ArrayList;
 
-public class GradesUtil extends ArrayList<Grade>{
+public class GradeRepository extends ArrayList<Grade>{
     Grade auxGrade = new Grade();
 
-    public GradesUtil(){}
+    public GradeRepository(){}
 
-    GradesUtil(List<Grade> grades){
+    GradeRepository(List<Grade> grades){
         super(grades);
     }
     public Integer getIndex(String id){
