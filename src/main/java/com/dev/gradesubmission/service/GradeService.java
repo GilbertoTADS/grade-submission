@@ -1,12 +1,14 @@
 package com.dev.gradesubmission.service;
 
+import java.util.List;
+
 import com.dev.gradesubmission.Grade;
 import com.dev.gradesubmission.repository.GradeRepository;
 
 public class GradeService {
     private GradeRepository gradeRepo = new GradeRepository();
 
-    public Grade getAll() {
+    public List<Grade> getAll() {
         return gradeRepo.getAll();
     }
     public Grade set(int index, Grade element) {
@@ -46,6 +48,6 @@ public class GradeService {
          }else{
             this.set(indexGrade, grade);
          }
-         return this.getAll();
+         return this.getGradeBy(grade.getId());
     }
 }

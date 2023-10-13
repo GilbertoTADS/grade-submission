@@ -49,6 +49,10 @@ public class Grade implements Cloneable{
     }
     @Override
     public Grade clone() throws CloneNotSupportedException{
-        return (Grade) super.clone();
+        Grade grade = (Grade) super.clone();
+        grade.setName(this.name);
+        grade.setScore(this.score);
+        grade.setSubject(this.subject);
+        return grade;
     }
 }

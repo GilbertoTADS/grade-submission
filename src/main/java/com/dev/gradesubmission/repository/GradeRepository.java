@@ -30,12 +30,16 @@ public class GradeRepository extends ArrayList<Grade>{
         return getIndex(id) == Constants.NOT_FOUND;
     }
 
-    public Grade getAll() {
+    public List<Grade> getAll() {
         try{
-            return this.auxGrade.clone();
+            ArrayList<Grade> clone = new ArrayList<>();
+            for(Grade grade:this){
+                clone.add(grade.clone());
+            }
+            return clone;
         }catch(CloneNotSupportedException e){
             System.err.println(e);
-            return new Grade();
+            return new ArrayList<Grade>();
         }
         
     }
