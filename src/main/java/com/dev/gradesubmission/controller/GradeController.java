@@ -10,41 +10,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dev.gradesubmission.Grade;
-import com.dev.gradesubmission.repository.GradeRepository;
+import com.dev.gradesubmission.service.GradeService;
 
 @Controller
 public class GradeController {
 
-    GradeRepository gradeRepo = new GradeRepository();
-    
+    GradeService gradeService = new GradeService();
+
     @GetMapping(value="/")
     public String gradeForm(Model model, @RequestParam(required = false) String id){
-        int indexGrade = gradeRepo.getIndex(id);
+        int indexGrade = gradeService.getIndex(id);
         System.out.println(indexGrade +" id searched:"+id);
-        for(Grade g:gradeRepo){
-            System.out.println("ID existent: "+g.getId());
-            System.out.println("not exist ? "+ gradeRepo.notExist(id));
-        }
         Grade gradeEmpty = new Grade();
-        Grade grade = gradeRepo.notExist(id) ? gradeEmpty : gradeRepo.get(indexGrade);
+        Grade grade = gradeService.notExist(id) ? gradeEmpty : gradeService.get(indexGrade);
         
         model.addAttribute("grade", grade);
         return "form";
     }
     @GetMapping(value="/grades")
     public String getGrades(Model model){
-        model.addAttribute("grades", gradeRepo);
+        model.addAttribute("grades", gradeService);
         return "grades";
     }
     @PostMapping("/handleSubmit")
     public String submitGrade(@Valid Grade grade, BindingResult result ){
         if(result.hasErrors()) return "form";
-        Integer indexGrade = gradeRepo.getIndex(grade.getId());
+        Integer indexGrade = gradeService.getIndex(grade.getId());
         
-        if(gradeRepo.notExist(grade.getId())){
-            gradeRepo.add(grade);
+        if(gradeService.notExist(grade.getId())){
+            gradeService.add(grade);
          }else{
-            gradeRepo.set(indexGrade, grade);
+            gradeService.set(indexGrade, grade);
          }
         return "redirect:/grades";
     }
