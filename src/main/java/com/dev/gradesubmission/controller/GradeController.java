@@ -19,29 +19,18 @@ public class GradeController {
 
     @GetMapping(value="/")
     public String gradeForm(Model model, @RequestParam(required = false) String id){
-        int indexGrade = gradeService.getIndex(id);
-        System.out.println(indexGrade +" id searched:"+id);
-        Grade gradeEmpty = new Grade();
-        Grade grade = gradeService.notExist(id) ? gradeEmpty : gradeService.get(indexGrade);
-        
-        model.addAttribute("grade", grade);
+        model.addAttribute("grade", gradeService.getGradeBy(id));
         return "form";
     }
     @GetMapping(value="/grades")
     public String getGrades(Model model){
-        model.addAttribute("grades", gradeService);
+        model.addAttribute("grades", gradeService.getAll());
         return "grades";
     }
     @PostMapping("/handleSubmit")
     public String submitGrade(@Valid Grade grade, BindingResult result ){
         if(result.hasErrors()) return "form";
-        Integer indexGrade = gradeService.getIndex(grade.getId());
-        
-        if(gradeService.notExist(grade.getId())){
-            gradeService.add(grade);
-         }else{
-            gradeService.set(indexGrade, grade);
-         }
+        gradeService.submiGrade(grade);
         return "redirect:/grades";
     }
 }

@@ -27,7 +27,16 @@ public class GradeRepository extends ArrayList<Grade>{
         return !notExist(id);
     }
     public boolean notExist(String id){
-        System.out.println("my index: "+getIndex(id));
         return getIndex(id) == Constants.NOT_FOUND;
+    }
+
+    public Grade getAll() {
+        try{
+            return this.auxGrade.clone();
+        }catch(CloneNotSupportedException e){
+            System.err.println(e);
+            return new Grade();
+        }
+        
     }
 }

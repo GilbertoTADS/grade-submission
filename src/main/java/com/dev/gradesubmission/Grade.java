@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
 
-public class Grade {
+public class Grade implements Cloneable{
     private String id;
     @NotBlank(message = "Subject cannot be blank")
     private String subject;
@@ -46,5 +46,9 @@ public class Grade {
         Grade g = (Grade)o;
         String id = this.getId();
         return id.equals(g.getId());
+    }
+    @Override
+    public Grade clone() throws CloneNotSupportedException{
+        return (Grade) super.clone();
     }
 }
