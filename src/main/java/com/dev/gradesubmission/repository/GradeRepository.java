@@ -1,12 +1,14 @@
 package com.dev.gradesubmission.repository;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
 
 import com.dev.gradesubmission.Constants;
 import com.dev.gradesubmission.Grade;
 
-import java.util.ArrayList;
-
+@Repository
 public class GradeRepository extends ArrayList<Grade>{
     Grade auxGrade = new Grade();
 

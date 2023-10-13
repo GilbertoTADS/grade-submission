@@ -2,12 +2,21 @@ package com.dev.gradesubmission.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.dev.gradesubmission.Grade;
 import com.dev.gradesubmission.repository.GradeRepository;
 
+@Service
 public class GradeService {
-    private GradeRepository gradeRepo = new GradeRepository();
+    
+    private GradeRepository gradeRepo;
 
+    @Autowired
+    public GradeService(GradeRepository gradeRepo){
+        this.gradeRepo = gradeRepo;
+    }
     public List<Grade> getAll() {
         return gradeRepo.getAll();
     }

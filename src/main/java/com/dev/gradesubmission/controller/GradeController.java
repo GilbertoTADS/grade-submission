@@ -2,6 +2,7 @@ package com.dev.gradesubmission.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,8 +16,12 @@ import com.dev.gradesubmission.service.GradeService;
 @Controller
 public class GradeController {
 
-    GradeService gradeService = new GradeService();
-
+    GradeService gradeService;
+    
+    @Autowired
+    public GradeController(GradeService gradeService){
+        this.gradeService = gradeService;    
+    }
     @GetMapping(value="/")
     public String gradeForm(Model model, @RequestParam(required = false) String id){
         model.addAttribute("grade", gradeService.getGradeBy(id));
